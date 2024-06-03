@@ -103,53 +103,53 @@ export default function Home() {
   return (
     <main className="max-w-3xl mx-auto md:py-10 h-screen">
       <h1 className="text-4xl font-bold text-primary">Chat Engine</h1>
-      <Input
-        onChange={(e => searchUsers(e.target.value))}
-      />
-      <div className="flex justify-end gap-2 mt-2">
-        <button
-          className="border-2 bg-white text-black p-1"
-          onClick={fetchPrevPage}
-        >
-          Back
-        </button>
-        <span className="text-white p-1 font-extrabold">{currpage}</span>
-        <button
-          className="border-2 bg-white text-black p-1"
-          onClick={fetchNextPage}
-        >
-          Next
-        </button>
-      </div>
       <Suspense fallback={<div>Loading...</div>}>
-      <div className="grid grid-cols-1 gap-4 mt-4">
-        {chatData?.map((chat) => (
-          <div
-            key={chat.id}
-            className="bg-card p-4 rounded-lg flex items-center justify-between"
+        <Input
+          onChange={(e => searchUsers(e.target.value))}
+        />
+        <div className="flex justify-end gap-2 mt-2">
+          <button
+            className="border-2 bg-white text-black p-1"
+            onClick={fetchPrevPage}
           >
-            <div className="flex items-center">
-              <Image
-                src={chat.avatar}
-                alt="avatar"
-                width={50}
-                height={50}
-                className="rounded-full"
-              />
-              <div className="ml-4">
-                <h2 className="text-lg font-semibold text-primary">
-                  {chat.username}
-                </h2>
-                {chat.active ? (
-                  <span className="text-sm text-accent text-white">🟢 Active</span>
-                ) : (
-                  <span className="text-sm text-muted text-white">🔴 Offline</span>
-                )}
+            Back
+          </button>
+          <span className="text-white p-1 font-extrabold">{currpage}</span>
+          <button
+            className="border-2 bg-white text-black p-1"
+            onClick={fetchNextPage}
+          >
+            Next
+          </button>
+        </div>
+        <div className="grid grid-cols-1 gap-4 mt-4">
+          {chatData?.map((chat) => (
+            <div
+              key={chat.id}
+              className="bg-card p-4 rounded-lg flex items-center justify-between"
+            >
+              <div className="flex items-center">
+                <Image
+                  src={chat.avatar}
+                  alt="avatar"
+                  width={50}
+                  height={50}
+                  className="rounded-full"
+                />
+                <div className="ml-4">
+                  <h2 className="text-lg font-semibold text-primary">
+                    {chat.username}
+                  </h2>
+                  {chat.active ? (
+                    <span className="text-sm text-accent text-white">🟢 Active</span>
+                  ) : (
+                    <span className="text-sm text-muted text-white">🔴 Offline</span>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       </Suspense>
     </main>
   );
