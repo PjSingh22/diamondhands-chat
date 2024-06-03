@@ -9,6 +9,9 @@ const nextConfig = {
         // pathname: '/account123/**',
       },
     ],
+  },
+  experimental: {
+    missingSuspenseWithCSRBailout: false
   }
 };
 
