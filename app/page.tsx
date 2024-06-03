@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { fetchPaginatedData } from "@/lib/utils";
 import { Input } from "@/components/ui/input"
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
@@ -121,6 +121,7 @@ export default function Home() {
           Next
         </button>
       </div>
+      <Suspense fallback={<div>Loading...</div>}>
       <div className="grid grid-cols-1 gap-4 mt-4">
         {chatData?.map((chat) => (
           <div
@@ -149,6 +150,7 @@ export default function Home() {
           </div>
         ))}
       </div>
+      </Suspense>
     </main>
   );
 }
