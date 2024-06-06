@@ -59,3 +59,35 @@
       @apply bg-background text-foreground;
     }
   }
+
+  #main {
+    display: grid;
+    grid-template-columns: .2fr 1fr;
+  }
+
+  #users {
+    min-height: 100%;
+  }
+
+
+  #chat-box {
+    min-height: 96%;
+  }
+  .chat-message {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+    border-right: 1px solid var(--border);
+  }
+
+  .chat-message-content {
+    display: flex;
+    font-size: 25px;
+    gap: 10px;
+  }
+
+  .user-name {
+    margin-right: 10px;
+    color: purple
+  }

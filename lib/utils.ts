@@ -25,5 +25,5 @@ export async function fetchPaginatedData<T>(
     },
   })
 
-  return response.json()
+  return response
 };
