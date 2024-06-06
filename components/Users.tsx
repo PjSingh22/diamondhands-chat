@@ -23,8 +23,12 @@ const fetchUsers = async (page:number) => {
   return data;
 };
 
-export default async function Users({ page }) {
-  const currPage = page || '1';
+type UsersProps = {
+  page: string;
+};
+
+export default async function Users({ page } : UsersProps) {
+  const currPage = parseInt(page) || 1;
   // const response = await fetchPaginatedData("https://665621609f970b3b36c4625e.mockapi.io/users", 10, 1);
   const users: User[] = await fetchUsers(currPage);
 

@@ -7,7 +7,7 @@ export default async function Home({
 }: {
   searchParams: { [key: string]: string | string[] | undefined }
 }): Promise<React.ReactNode> {
-  const page = searchParams['page'] ? searchParams['page'] : '1';
+  const page = searchParams['page'] ? searchParams['page'].toString() : '1';
   // const limit = searchParams['limit'] ? parseInt(searchParams['limit'] as string) : 10;
 
   return (
