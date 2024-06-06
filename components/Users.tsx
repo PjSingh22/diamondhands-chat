@@ -2,6 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import { Input } from "@/components/ui/input"
 import { fetchPaginatedData } from "@/lib/utils";
+import PaginationControls  from "@/components/PaginationControls";
+import Link from 'next/link';
 
 interface User {
   id: string;
@@ -10,28 +12,26 @@ interface User {
   active: boolean;
 }
 
-export default async function Users() {
-  const response = await fetchPaginatedData("https://665621609f970b3b36c4625e.mockapi.io/users", 10, 1);
-  const users: User[] = await response.json();
+const fetchUsers = async (page:number) => {
+  const response = await fetch(`https://665621609f970b3b36c4625e.mockapi.io/users?page=${page}&limit=10`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+  return data;
+};
+
+export default async function Users({ page }) {
+  const currPage = page || '1';
+  // const response = await fetchPaginatedData("https://665621609f970b3b36c4625e.mockapi.io/users", 10, 1);
+  const users: User[] = await fetchUsers(currPage);
 
   return (
     <section id='users' className='border border-white p-3'>
       <Input placeholder={"Search..."} />
-      <div className="flex justify-center gap-2 mt-2 mb-2">
-        <button
-          className="border-2 bg-white text-black p-1"
-          // onClick={fetchPrevPage}
-        >
-          Back
-        </button>
-        {/* <span className="text-white p-1 font-extrabold">{currpage}</span> */}
-        <button
-          className="border-2 bg-white text-black p-1"
-          // onClick={fetchNextPage}
-        >
-          Next
-        </button>
-      </div>
+      <PaginationControls />
       <div className="flex flex-col">
         {users?.map((user: User) => (
           <div

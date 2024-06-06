@@ -2,10 +2,17 @@ import React from 'react';
 import Users from '@/components/Users';
 import Chat from '@/components/Chat';
 
-export default async function Home(): Promise<React.ReactNode> {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined }
+}): Promise<React.ReactNode> {
+  const page = searchParams['page'] ? searchParams['page'] : '1';
+  // const limit = searchParams['limit'] ? parseInt(searchParams['limit'] as string) : 10;
+
   return (
     <main id='main' className="h-screen">
-      <Users />
+      <Users page={page} />
       <Chat />
     </main>
   );
