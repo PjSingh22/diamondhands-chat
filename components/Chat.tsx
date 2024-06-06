@@ -33,7 +33,7 @@ export default function Chat() {
           </div> */}
         </div>
       </div>
-      <Input type='text' id='chat-input' className='chat-input' />
+      <Input type='text' id='chat-input' className='chat-input' placeholder={"Enter Text Here..."} />
     </div>
   )
 }

@@ -16,7 +16,7 @@ export default async function Users() {
 
   return (
     <section id='users' className='border border-white p-3'>
-      <Input />
+      <Input placeholder={"Search..."} />
       <div className="flex justify-center gap-2 mt-2 mb-2">
         <button
           className="border-2 bg-white text-black p-1"
