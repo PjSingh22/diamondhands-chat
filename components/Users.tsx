@@ -12,6 +12,10 @@ interface User {
   active: boolean;
 }
 
+type UsersProps = {
+  page: string;
+};
+
 const fetchUsers = async (page:number) => {
   const response = await fetch(`https://665621609f970b3b36c4625e.mockapi.io/users?page=${page}&limit=10`, {
     method: "GET",
@@ -23,9 +27,6 @@ const fetchUsers = async (page:number) => {
   return data;
 };
 
-type UsersProps = {
-  page: string;
-};
 
 export default async function Users({ page } : UsersProps) {
   const currPage = parseInt(page) || 1;
