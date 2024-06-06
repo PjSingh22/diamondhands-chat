@@ -8,11 +8,11 @@ export default async function Home({
   searchParams: { [key: string]: string | string[] | undefined }
 }): Promise<React.ReactNode> {
   const page = searchParams['page'] ? searchParams['page'].toString() : '1';
-  // const limit = searchParams['limit'] ? parseInt(searchParams['limit'] as string) : 10;
+  const searchQuery = searchParams['search'] ? searchParams['search'].toString() : '';
 
   return (
     <main id='main' className="h-screen">
-      <Users page={page} />
+      <Users page={page} searchQuery={searchQuery} />
       <Chat />
     </main>
   );
