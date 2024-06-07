@@ -81,7 +81,6 @@ export default function ChatInput() {
 
   return (
     <div>
-
       {commandToolbar()}
       <Input type='text' id='chat-input' className='chat-input' placeholder={"Enter Text Here..."} value={text} onChange={e => setText(e.target.value)} />
     </div>
