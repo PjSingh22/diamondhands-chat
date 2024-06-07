@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 // import { Input } from "@/components/ui/input"
-import { fetchPaginatedData } from "@/lib/utils";
+import { fetchUsers } from "@/lib/utils";
 import PaginationControls  from "@/components/PaginationControls";
 import Link from 'next/link';
 
@@ -16,18 +16,6 @@ type UsersProps = {
   page: string;
   searchQuery: string;
 };
-
-const fetchUsers = async (page:number, searchQuery:string) => {
-  const response = await fetch(`https://665621609f970b3b36c4625e.mockapi.io/users?page=${page}&limit=10&search=${searchQuery}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const data = await response.json();
-  return Array.isArray(data) ? data : []
-};
-
 
 export default async function Users({ page, searchQuery } : UsersProps) {
   const currPage = parseInt(page) || 1;
