@@ -1,5 +1,6 @@
 import React from 'react'
 import { Input } from './ui/input'
+import ChatInput from './ui/ChatInput'
 
 export default function Chat() {
   return (
@@ -33,7 +34,7 @@ export default function Chat() {
           </div> */}
         </div>
       </div>
-      <Input type='text' id='chat-input' className='chat-input' placeholder={"Enter Text Here..."} />
+      <ChatInput />
     </div>
   )
 }
