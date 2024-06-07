@@ -67,12 +67,27 @@
 
   #users {
     min-height: 100%;
+    border-right-color: white;
   }
 
 
   #chat-box {
     min-height: 96%;
   }
+
+  .username {
+    font-size: 1.05vw;
+    text-wrap: wrap;
+  }
+
+  .status {
+    font-size: 1vw;
+  }
+
+  .image {
+    width: 3vw;
+  }
+
   .chat-message {
     display: flex;
     flex-direction: column;
@@ -90,6 +105,10 @@
   .user-name {
     margin-right: 10px;
     color: purple
+  }
+
+  .user-name, .user-msg {
+    font-size: 2vw;
   }
 
   .toolbar {

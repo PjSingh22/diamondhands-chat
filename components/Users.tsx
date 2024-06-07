@@ -24,14 +24,14 @@ export default async function Users({ page, searchQuery } : UsersProps) {
   const users: User[] = await fetchUsers(currPage, searchParam);
 
   return (
-    <section id='users' className='border border-white p-3'>
+    <section id='users' className='border p-3'>
       {/* <Input placeholder={"Search..."} /> */}
       <PaginationControls />
       <div className="flex flex-col">
         {users?.map((user: User) => (
           <div
             key={user.id}
-            className="bg-card p-2 rounded-lg flex items-center justify-between"
+            className="bg-card p-2 pt-3 rounded-lg flex items-center justify-between"
           >
             <div className="flex items-center">
               <Image
@@ -39,16 +39,16 @@ export default async function Users({ page, searchQuery } : UsersProps) {
                 alt="avatar"
                 width={50}
                 height={50}
-                className="rounded-full"
+                className="rounded-full image"
               />
               <div className="ml-4">
-                <h2 className="text-lg font-semibold text-primary">
+                <h2 className="username text-primary">
                   {user.username}
                 </h2>
                 {user.active ? (
-                  <span className="text-sm text-accent text-white">🟢 Active</span>
+                  <span className="text-sm text-accent text-white status">🟢 Active</span>
                 ) : (
-                  <span className="text-sm text-muted text-white">🔴 Offline</span>
+                  <span className="text-sm text-muted text-white status">🔴 Offline</span>
                 )}
               </div>
             </div>
