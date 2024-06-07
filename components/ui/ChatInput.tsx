@@ -12,7 +12,7 @@ export default function ChatInput() {
 
   useEffect(() => {
     const fetchUsers = async (query:string) => {
-      const response = await fetch(`https://665621609f970b3b36c4625e.mockapi.io/users?limit=3&search=${query}`);
+      const response = await fetch(`https://665621609f970b3b36c4625e.mockapi.io/users?page=1&limit=3&search=${query}`);
       const data = await response.json();
       setUsers(Array.isArray(data) ? data : []);
     };
@@ -28,12 +28,16 @@ export default function ChatInput() {
 
   const usersElement = () => {
     return (
-      <div className="user-toolbar">
+      <div className="user-toolbar toolbar">
         {users.map((user) => (
           <div
             key={user.id}
             className="user"
-            onClick={() => setText(text.replace(/@\w*$/, `@${user.username} `))}
+            onClick={() => {
+              setText(text.replace(/@\w*$/, `@${user.username} `));
+              if (users.length === 1) setUsers([]);
+            }
+          }
           >
             {user.username}
           </div>
@@ -43,13 +47,20 @@ export default function ChatInput() {
   }
 
   const commandsElement = () => {
+    if (commands.includes(text.split(' ')[0].toLowerCase())) {
+      return null;
+    }
     return (
-      <div className="command-toolbar">
+      <div className="command-toolbar toolbar">
         {commands.map((command) => (
           <div
             key={command}
             className="command"
-            onClick={() => setText(command + ' ')}
+            onClick={() => {
+              setText(command + ' ')
+              // close command toolbar
+            }
+          }
           >
             {command}
           </div>
@@ -59,18 +70,18 @@ export default function ChatInput() {
   }
 
   const commandToolbar = () => {
-    if (text.startsWith('/')) {
-      return commandsElement();
-    }
+    if (text.startsWith("@")) return usersElement();
 
-    if (text.includes('@') && users.length > 0) {
-      return usersElement();
-    }
+    if (text.startsWith('/') && !text.includes('@') ) return commandsElement();
+
+    if (text.includes('@') && users.length > 0) return usersElement();
+
     return null;
   };
 
   return (
     <div>
+
       {commandToolbar()}
       <Input type='text' id='chat-input' className='chat-input' placeholder={"Enter Text Here..."} value={text} onChange={e => setText(e.target.value)} />
     </div>

@@ -91,3 +91,17 @@
     margin-right: 10px;
     color: purple
   }
+
+  .toolbar {
+    display: flex;
+    position: absolute;
+    bottom: 50px;
+    flex-direction: column;
+    background-color: white;
+    color: black;
+    width: 82vw;
+    border-radius: 10px;
+    gap: 10px;
+    padding: 10px;
+    border-top: 1px solid var(--border);
+  }
